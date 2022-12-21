@@ -22,3 +22,10 @@ stmt = "SELECT tipo FROM Role WHERE id = %s"
 cursor.execute(stmt, (queryResult[1],))
 role = cursor.fetchone()[0]
 print("Logged in!\nWelcome " + str(queryResult[0]) + ", with the " + role +" role.")
+
+"""
+Marketing: ver clientes / criar anuncio
+Account manager: ver invoices
+technical assistance: ver appliances
+system manager: ver tudo
+"""
