@@ -1,5 +1,6 @@
 import copy
 from getpass import getpass
+import sys
 import mysql.connector
 
 cnx = mysql.connector.connect(user='seed', password='deesdees',
@@ -22,6 +23,35 @@ stmt = "SELECT tipo FROM Role WHERE id = %s"
 cursor.execute(stmt, (queryResult[1],))
 role = cursor.fetchone()[0]
 print("Logged in!\nWelcome " + str(queryResult[0]) + ", with the " + role +" role.")
+if (role == "Marketing"):
+    while (True):
+        print("Operations: (S)ee all customers; (C)reate new add; (E)xit")
+        op = input()
+        if (op == "S" or op == "s"):
+            print("Clientes:")
+            stmt = "SELECT nome, username FROM Client"
+            cursor.execute(stmt)
+            queryResult = cursor.fetchall()
+            for customer in queryResult:
+                print("Nome: " + customer[0] + " Username: " + customer[1])
+        elif (op == "C" or op == "c"):
+            #statement
+            print()
+        elif (op == "E" or op == "e"):
+            sys.exit();
+elif (role == "Account Manager"):
+    while (True):
+        print("Operations: (S)ee all invoices; (E)xit")
+        op = input()
+        if (op == "S" or op == "s"):
+            print("Invoices:")
+            stmt = "SELECT nome, username FROM Client"
+            cursor.execute(stmt)
+            queryResult = cursor.fetchall()
+            for customer in queryResult:
+                print("Nome: " + customer[0] + " Username: " + customer[1])
+        elif (op == "E" or op == "e"):
+            sys.exit();
 
 """
 Marketing: ver clientes / criar anuncio
